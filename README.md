@@ -1,0 +1,1 @@
+[Pomodoro Timer](https://en.wikipedia.org/wiki/Pomodoro_Technique) built on a [Raspberry Pi 3B](https://www.raspberrypi.com/products/raspberry-pi-3-model-b/) with a [Sense HAT](https://www.raspberrypi.com/products/sense-hat/)
