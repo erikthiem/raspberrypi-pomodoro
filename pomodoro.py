@@ -3,102 +3,69 @@ import time
 sense = SenseHat()
 
 def alert(color):
-    sense.clear()
+    O = [0,0,0] # Light turned off
+    X = color   # Easy symbol to visually see in code
 
-    time.sleep(1)
+    f0 = [
+        O, O, O, O, O, O, O, O,
+        O, O, O, O, O, O, O, O,
+        O, O, O, O, O, O, O, O,
+        O, O, O, O, O, O, O, O,
+        O, O, O, O, O, O, O, O,
+        O, O, O, O, O, O, O, O,
+        O, O, O, O, O, O, O, O,
+        O, O, O, O, O, O, O, O
+    ]
 
-    # Inner level
+    f1 = [
+        O, O, O, O, O, O, O, O,
+        O, O, O, O, O, O, O, O,
+        O, O, O, O, O, O, O, O,
+        O, O, O, X, X, O, O, O,
+        O, O, O, X, X, O, O, O,
+        O, O, O, O, O, O, O, O,
+        O, O, O, O, O, O, O, O,
+        O, O, O, O, O, O, O, O
+    ]
 
-    sense.set_pixel(3,3, color)
-    sense.set_pixel(3,4, color)
-    sense.set_pixel(4,3, color)
-    sense.set_pixel(4,4, color)
+    f2 = [
+        O, O, O, O, O, O, O, O,
+        O, O, O, O, O, O, O, O,
+        O, O, X, X, X, X, O, O,
+        O, O, X, X, X, X, O, O,
+        O, O, X, X, X, X, O, O,
+        O, O, X, X, X, X, O, O,
+        O, O, O, O, O, O, O, O,
+        O, O, O, O, O, O, O, O
+    ]
 
-    time.sleep(1)
+    f3 = [
+        O, O, O, O, O, O, O, O,
+        O, X, X, X, X, X, X, O,
+        O, X, X, X, X, X, X, O,
+        O, X, X, X, X, X, X, O,
+        O, X, X, X, X, X, X, O,
+        O, X, X, X, X, X, X, O,
+        O, X, X, X, X, X, X, O,
+        O, O, O, O, O, O, O, O
+    ]
 
-    # Second level
+    f4 = [
+        X, X, X, X, X, X, X, X,
+        X, X, X, X, X, X, X, X,
+        X, X, X, X, X, X, X, X,
+        X, X, X, X, X, X, X, X,
+        X, X, X, X, X, X, X, X,
+        X, X, X, X, X, X, X, X,
+        X, X, X, X, X, X, X, X,
+        X, X, X, X, X, X, X, X
+    ]
 
-    sense.set_pixel(2,2, color)
-    sense.set_pixel(2,3, color)
-    sense.set_pixel(2,4, color)
-    sense.set_pixel(2,5, color)
+    frames = [f0, f1, f2, f3, f4]
 
-    sense.set_pixel(3,2, color)
-    sense.set_pixel(3,5, color)
-
-    sense.set_pixel(4,2, color)
-    sense.set_pixel(4,5, color)
-
-    sense.set_pixel(5,2, color)
-    sense.set_pixel(5,3, color)
-    sense.set_pixel(5,4, color)
-    sense.set_pixel(5,5, color)
-
-    time.sleep(1)
-
-    # Third level
-
-    sense.set_pixel(1,1, color)
-    sense.set_pixel(1,2, color)
-    sense.set_pixel(1,3, color)
-    sense.set_pixel(1,4, color)
-    sense.set_pixel(1,5, color)
-    sense.set_pixel(1,6, color)
-
-    sense.set_pixel(2,1, color)
-    sense.set_pixel(3,1, color)
-    sense.set_pixel(4,1, color)
-    sense.set_pixel(5,1, color)
-
-    sense.set_pixel(2,6, color)
-    sense.set_pixel(3,6, color)
-    sense.set_pixel(4,6, color)
-    sense.set_pixel(5,6, color)
-
-    sense.set_pixel(6,1, color)
-    sense.set_pixel(6,2, color)
-    sense.set_pixel(6,3, color)
-    sense.set_pixel(6,4, color)
-    sense.set_pixel(6,5, color)
-    sense.set_pixel(6,6, color)
-
-    time.sleep(1)
-
-    # Outer level
-
-    sense.set_pixel(0,0, color)
-    sense.set_pixel(0,1, color)
-    sense.set_pixel(0,2, color)
-    sense.set_pixel(0,3, color)
-    sense.set_pixel(0,4, color)
-    sense.set_pixel(0,5, color)
-    sense.set_pixel(0,6, color)
-    sense.set_pixel(0,7, color)
-
-    sense.set_pixel(1,0, color)
-    sense.set_pixel(2,0, color)
-    sense.set_pixel(3,0, color)
-    sense.set_pixel(4,0, color)
-    sense.set_pixel(5,0, color)
-    sense.set_pixel(6,0, color)
-
-    sense.set_pixel(1,7, color)
-    sense.set_pixel(2,7, color)
-    sense.set_pixel(3,7, color)
-    sense.set_pixel(4,7, color)
-    sense.set_pixel(5,7, color)
-    sense.set_pixel(6,7, color)
-
-    sense.set_pixel(7,0, color)
-    sense.set_pixel(7,1, color)
-    sense.set_pixel(7,2, color)
-    sense.set_pixel(7,3, color)
-    sense.set_pixel(7,4, color)
-    sense.set_pixel(7,5, color)
-    sense.set_pixel(7,6, color)
-    sense.set_pixel(7,7, color)
-
-    time.sleep(1)
+    for frame in frames:
+        sense.set_pixels(frame)
+        time.sleep(1)
 
 # Detect the raspberry pi being picked up.
 # Technically detects "shake", but assuming it is sitting still, this will detect somebody picking it up.
